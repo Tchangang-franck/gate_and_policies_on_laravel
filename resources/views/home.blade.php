@@ -26,6 +26,8 @@
                     <h1>Cette page est dedier aux editeurs</h1>
                 @endcan
             </div>
+            <h3>Posts</h3>
+            <a href="{{ route('post.index') }}" class="btn btn-success">See posts</a>
         </div>
     </div>
 </div>

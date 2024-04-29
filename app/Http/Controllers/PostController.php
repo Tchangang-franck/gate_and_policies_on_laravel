@@ -11,11 +11,17 @@ class PostController extends Controller
 {
     public function index()
     {
-        $user = DB::table('posts')
-            ->join('users', 'posts.id', '=', 'users.id')
-            ->select('users.name')
-            ->get();
-        $posts = Post::all();
+
+        $posts = Post::all()->load(['user']);
         return view('policies.index', compact('posts'));
     }
+
+    public function show(Post $post)
+    {
+        return  view('policies.show')->with('post', $post);
+    }
+
+    // public function destroy(Post $post){
+    //     $post->delete();
+    // }
 }

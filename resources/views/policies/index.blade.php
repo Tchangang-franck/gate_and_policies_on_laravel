@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="container">
-    <h3>{{ Auth::user->name}}</h3>
+    <h3>{{ Auth::user()->name}}</h3>
     <hr>
+    <h1 style="text-align:center;margin-bottom:10px"><b>Liste des differents posts</b> </h1>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <table class="table">
@@ -25,17 +26,21 @@
                             <td>{{ $post->user->name }}</td>
                             <td>
                                 <div class="btn-group btn-group-horizontal" role="group">
-                                    <a href="#" class="btn btn-primary m-1">View</a>
+                                    @can('view',$post)
+                                        <a href="{{ route('post.show',$post) }}" class="btn btn-primary m-1">View</a>
+                                    @endcan
+                                   @can('delete',$post)
+                                     <a href="#" class="btn btn-danger m-1">Delete</a>   
+                                   @endcan
                                     <a href="#" class="btn btn-success m-1">modify</a>
-                                    <a href="#" class="btn btn-danger m-1">Delete</a>
                                 </div>
-                              
                             </td>
                         </tr>
                 </tbody>    
                     @endforeach
                 </tbody>
             </table>
+            
         </div> 
     </div>       
 </div>
